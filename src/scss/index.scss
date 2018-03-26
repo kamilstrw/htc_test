@@ -1,0 +1,337 @@
+
+
+* {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+	font-family: "Arial";
+}
+
+.App
+{
+	height: 100vh;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #e3e3e3;
+}
+.User
+{
+	position: relative;
+	width: auto;
+	height: auto;
+	&__tabscontrol
+	{
+		position: absolute;
+		height: 50px;
+    	top: -37px;
+		left: 0px;
+		display: flex;
+		flex-direction: row;
+		.tabbutton
+		{
+			display: block;
+			border-radius: 5px;
+			color: white;
+			background-color: #196fae;
+			height: 100%;
+			padding: 10px 15px;
+			margin-right: 10px;
+			z-index: 0;
+			box-shadow: 2px 2px 2px 0 grey;
+			cursor: pointer;
+			transition: 0.3s;
+			-webkit-transition: 0.7s;
+			-moz-transition: 0.7s;
+			&.tab-active
+			{
+				background-color: white;
+				color: black;
+			}
+		}
+	}
+	&__tab
+	{
+		position: relative;
+		width: 490px;
+		height: 290px;
+		background-color: white;
+		border-radius: 5px;
+		padding: 15px 25px 15px 15px;
+		z-index: 2;
+		box-shadow: 1px 1px 1px 0 grey;
+		display: block;
+	}
+}
+.usercard
+{
+	width: 100%;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1.5fr 1.5fr;
+	grid-column-gap: 15px;
+	grid-row-gap: 10px;
+	grid-template-areas: "avatar username username"
+						 "avatar userdata userdata"
+						 "addToFriends userInterests userInterests";
+	&__avatar
+	{
+		grid-area: avatar;
+		border-radius: 5px;
+		overflow: hidden;
+		img
+		{
+			width: 100%;
+		}
+	}
+	&__username
+	{
+		grid-area: username;
+		padding: 10px;
+		h3 
+		{
+			cursor: pointer;
+		}
+		small 
+		{
+			color: grey;
+		}
+	}
+	&__userdata
+	{
+		grid-area: userdata;
+		font-size: 12px;	
+	}
+	&__addToFriends
+	{
+		grid-area: addToFriends;
+		&__button
+		{
+			display: block;
+			cursor: pointer;
+			color: white;
+			background: #e65600;
+			border-radius: 5px;
+			font-size: 13px;
+			padding: 10px;
+			text-align: center;
+		}
+	}
+	&__interests
+	{
+		padding-left: 10px;
+		grid-area: userInterests;
+		position: relative;
+		&__title
+		{
+			position: absolute;
+			top: -15px;
+			font-size: 14px;
+		}
+		&__js-add
+		{
+			margin: 0 5px;
+			cursor: pointer;
+			color: #196fae;
+			font-weight: bold;
+		}
+		&__list
+		{
+			height: 100%;
+			&__item
+			{
+				height: auto;
+				display: inline-block;
+				padding: 5px 10px;
+				color: #196fae;
+				border: 1px solid grey;
+				border-radius: 3px;
+				margin: 5px 5px 0 0;
+				cursor: pointer;
+				&:hover
+				{
+					border-color: #196fae;
+					background-color: #e3e3e3;
+					color: black;
+				}
+			}
+		}
+	}
+}
+.friendlist
+{
+	height: 100%;
+	overflow-y: scroll;
+	display: grid;
+	grid-template-columns: repeat(2, 47%);
+	grid-column-gap: 20px;
+	grid-row-gap: 30px;
+	.usercardMini
+	{
+		display: grid;
+		grid-template-columns: 60px 60%;
+		grid-template-rows: 1fr 1fr;
+		grid-column-gap: 15px;
+		grid-template-areas: "avatar username"
+							 "avatar status";
+		height: 65px;
+		width: 100%;
+		cursor: pointer;
+		&:hover
+		{
+			background-color: #e3e3e3;
+		}
+		&__avatar
+		{
+			grid-area: avatar;
+			overflow: hidden;
+			display: flex;
+			justify-content: center;
+			background-color: #e3e3e3;
+			img 
+			{
+				position: relative;
+				height: 100%;
+				margin: 0 auto;
+			}
+		}
+		&__username
+		{
+			grid-area: username;
+			display: flex;
+			flex-direction: column;
+			align-items: baseline;
+			strong
+			{
+				max-width: 100%;
+				width: auto;
+				font-size: 15px;
+				color: #196fae;
+				cursor: pointer;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				border-bottom: 2px solid;
+				margin-bottom: 5px;
+			}
+			small
+			{
+				font-size: 12px;
+			}
+		}
+		&__status
+		{
+			grid-area: status;
+			display: flex;
+			flex-direction: column;
+			justify-content: flex-end;
+			small
+			{
+				font-size: 12px;
+				color: #8ab687;
+			}
+		}
+	}
+}
+.scroll-custom
+{
+	position: relative;
+	height: 100%;
+	&__bar
+	{
+		position: absolute;
+		height: 100%;
+		width: 6px;
+		background-color: #e3e3e3;
+		top: 0;
+		right: -10px;
+		border-radius: 3px;
+		&__handle
+		{
+			width: 100%;
+			position: absolute;
+			border-radius: 3px;
+			background-color: #196fae;
+		}
+	}
+	&__content
+	{
+		height: 100%;
+		width: 100%;
+		overflow-x: hidden;
+		& > *
+		{
+			margin-right: -18px;
+		}
+	}
+}
+.modal
+{
+	visibility: hidden;
+	position: fixed;
+	&.active
+	{
+		visibility: visible;
+		width: 100vw;
+		height: 100vh;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		top: 0;
+		left: 0;
+		background-color: #e3e3e3a0;
+	}
+	&__content
+	{
+		display: none;
+		width: 300px;
+		height: 200px;
+		border-radius: 5px;
+		background-color: white;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-evenly;
+		align-items: center;
+		box-shadow: 2px 2px 2px 0 grey;
+		input
+		{
+			height: 30px;
+			width: 80%;
+			padding: 5px;
+			font-size: 20px;
+			outline-color: #196fae;
+		}
+		&__controls
+		{
+			display: flex;
+			flex-direction: row;
+			justify-content: space-evenly;
+			width: 100%;
+		}
+	}
+}
+.button
+{
+	display: block;
+	padding: 3px 8px;
+	color: #196fae;
+	background-color: white;
+	border: 1px solid grey;
+	border-radius: 3px;
+	cursor: pointer;
+	&:hover
+	{
+		background-color: #e3e3e3;
+		color: black;
+		border-color: #196fae;
+	}
+	&.disabled
+	{
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}
